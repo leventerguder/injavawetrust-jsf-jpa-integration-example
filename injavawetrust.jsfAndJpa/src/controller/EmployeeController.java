@@ -2,11 +2,10 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import service.EmployeeService;
 import service.EmployeeServiceImpl;
 import model.Employee;
 
@@ -50,15 +49,16 @@ public class EmployeeController {
 	
 	public void addEmployee() {
 
-		EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
-		employeeService.createEmployee(name, surname, salary);
-
+		EmployeeService employeeService = new EmployeeServiceImpl();
+		Employee employee = new Employee(name,surname,salary);
+		employeeService.insertEmployee(employee);
+		
 		employees = employeeService.findAllEmployees();
 
 	}
 
 	public void deleteEmployee(int id) {
-		EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
+		EmployeeService employeeService = new EmployeeServiceImpl();
 		employeeService.removeEmployee(id);
 
 		employees = employeeService.findAllEmployees();

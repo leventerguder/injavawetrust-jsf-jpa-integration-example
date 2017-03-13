@@ -5,9 +5,9 @@ import java.util.List;
 import model.Employee;
 import dao.EmployeeDAOImpl;
 
-public class EmployeeServiceImpl {
+public class EmployeeServiceImpl implements EmployeeService {
 
-	private static EmployeeDAOImpl employeeDAOImpl;
+	private EmployeeDAOImpl employeeDAOImpl;
 
 	public EmployeeServiceImpl() {
 		employeeDAOImpl = new EmployeeDAOImpl();
@@ -17,19 +17,22 @@ public class EmployeeServiceImpl {
 		return employeeDAOImpl;
 	}
 
-	public Employee createEmployee(String name, String surname, int salary) {
-		return getEmployeeDAOImpl().createEmployee(name, surname, salary);
+	@Override
+	public Employee insertEmployee(Employee employee) {
+		return getEmployeeDAOImpl().insertEmployee(employee);
 	}
 
+	@Override
 	public Employee findEmployee(int id) {
 		return getEmployeeDAOImpl().findEmployee(id);
 	}
 
+	@Override
 	public List<Employee> findAllEmployees() {
 		return getEmployeeDAOImpl().findAllEmployees();
-
 	}
 
+	@Override
 	public void removeEmployee(int id) {
 		getEmployeeDAOImpl().removeEmployee(id);
 	}
