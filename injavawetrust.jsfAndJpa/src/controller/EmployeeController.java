@@ -16,7 +16,7 @@ public class EmployeeController {
 	private String name;
 	private String surname;
 	private int salary;
-	private List<Employee> employees = new ArrayList<Employee>();
+	private List<Employee> employees = new ArrayList<>();
 
 	public String getName() {
 		return name;
@@ -45,14 +45,13 @@ public class EmployeeController {
 	public List<Employee> getEmployees() {
 		return employees;
 	}
-	
-	
+
 	public void addEmployee() {
 
 		EmployeeService employeeService = new EmployeeServiceImpl();
-		Employee employee = new Employee(name,surname,salary);
+		Employee employee = new Employee(name, surname, salary);
 		employeeService.insertEmployee(employee);
-		
+
 		employees = employeeService.findAllEmployees();
 
 	}
